@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rafaelcds@gmail.com"]
   spec.summary       = %q{A capistrano task to import remote Postgres databases}
   spec.description   = %q{Fast download and restore dumps using edge features of Postgres 9.x}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/rafaelsales/capistrano-db_sync"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
