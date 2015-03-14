@@ -5,6 +5,7 @@ Fast and sophisticated remote database import using the best of **Postgres 9.2.x
 ### Features
 
 * Allows dumping data selectively - choose between entire, partial or no data
+* No downtime on restore - it uses a temporary database while restoring
 * Uses Postgres parallel restore
 * Uses Postgres custom dump format that is automatically compressed
 
@@ -73,6 +74,9 @@ The following steps describe what happens when executing `cap production db_sync
    3. data for tables with partial data specified in configuration
    4. triggers, constraints, rules and indexes
 
+### Contributors
+
+* Rafael Sales [@rafaelsales](http://github.com/rafaelsales) - help me not stay forever alone here :)
 
 ### Contributing
 
