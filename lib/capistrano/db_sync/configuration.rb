@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash'
+
 module Capistrano::DBSync
   class Configuration
     extend Forwardable
