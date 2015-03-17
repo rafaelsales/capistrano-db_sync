@@ -1,6 +1,5 @@
 require "capistrano"
 require "capistrano/version"
-Bundler.require(:development)
 
 namespace :db_sync do
   desc <<-DESC

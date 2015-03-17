@@ -10,6 +10,7 @@ Fast and sophisticated remote database import using the best of **Postgres 9.2.x
 * No downtime on restore - it uses a temporary database while restoring
 * Uses Postgres parallel restore
 * Uses Postgres custom dump format that is automatically compressed
+* *MySQL will be supported in near future*
 
 ### Requirements
 
