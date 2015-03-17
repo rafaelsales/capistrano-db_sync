@@ -8,9 +8,9 @@ describe Capistrano::DBSync::Postgres::Exporter do
   describe "#dump" do
     let(:data_selection) do
       {
-        campaigns:   "SELECT * FROM campaigns WHERE date > NOW() - interval '160 days'",
-        keywords:    "SELECT * FROM keywords  WHERE created_at > NOW() - interval '160 days'",
-        phone_calls: nil
+        posts:    "SELECT * FROM posts WHERE date > NOW() - interval '160 days'",
+        comments: "SELECT * FROM comments  WHERE created_at > NOW() - interval '160 days'",
+        likes: nil
       }
     end
 
@@ -19,13 +19,13 @@ describe Capistrano::DBSync::Postgres::Exporter do
 
       # Assert dumping database schema with data except for tables specified on data_selection
       commands[0].must_match /pg_dump.* -f \/tmp\/dumps\/0001-faceburger_production\.schema/
-      commands[0].must_match /--exclude-table-data="campaigns"/
-      commands[0].must_match /--exclude-table-data="keywords"/
-      commands[0].must_match /--exclude-table-data="phone_calls"/
+      commands[0].must_match /--exclude-table-data="posts"/
+      commands[0].must_match /--exclude-table-data="comments"/
+      commands[0].must_match /--exclude-table-data="likes"/
 
       # Assert dumping data for tables specified on data_selection
-      commands[1].must_match /COPY.*campaigns.*\/tmp\/dumps\/0002-campaigns\.table/
-      commands[2].must_match /COPY.*keywords.*\/tmp\/dumps\/0003-keywords\.table/
+      commands[1].must_match /copy.*posts.*\/tmp\/dumps\/0002-posts\.table/
+      commands[2].must_match /copy.*comments.*\/tmp\/dumps\/0003-comments\.table/
     end
   end
 end
