@@ -25,6 +25,7 @@ Fast and sophisticated remote database import using the best of **Postgres 9.2.x
    ```ruby
    gem 'capistrano-db_sync', require: false
    ```
+   Available in RubyGems: https://rubygems.org/gems/capistrano-db_sync
 
 2. Define your custom settings, if needed. We suggest to put this file at `lib/capistrano/tasks/db_sync.rake`.
    Capistrano 3.x should load all `*.rake` files by default in `Capfile`.
