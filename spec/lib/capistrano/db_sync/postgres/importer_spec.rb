@@ -11,7 +11,7 @@ describe Capistrano::DBSync::Postgres::Importer do
         .returns(["/tmp/dumps/0001-faceburger_production.schema"])
 
       Dir.stubs(:glob).with("/tmp/dumps/*.table")
-        .returns(["/tmp/dumps/0002-campaigns.table", "/tmp/dumps/0003-keywords.table"])
+        .returns(["/tmp/dumps/0002-posts.table", "/tmp/dumps/0003-comments.table"])
     end
 
     it "restore dump files" do
@@ -27,8 +27,8 @@ describe Capistrano::DBSync::Postgres::Importer do
       commands[3].must_match /pg_restore.* \/tmp\/dumps\/0001-faceburger_production\.schema/
 
       # Assert import selective tables data
-      commands[4].must_match /COPY campaigns.*\/tmp\/dumps\/0002-campaigns\.table/
-      commands[5].must_match /COPY keywords.*\/tmp\/dumps\/0003-keywords\.table/
+      commands[4].must_match /copy posts.*\/tmp\/dumps\/0002-posts\.table/
+      commands[5].must_match /copy comments.*\/tmp\/dumps\/0003-comments\.table/
 
       # Assert restore indexes, constraints, triggers and rules
       commands[6].must_match /pg_restore.*--section=post-data --jobs=3/

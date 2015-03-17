@@ -41,12 +41,12 @@ class Capistrano::DBSync::Postgres::CLI
     SQL
   end
 
-  def copy_to_file(to_compressed_file, db, query)
-    psql "\\COPY (#{query}) TO PROGRAM 'gzip > #{to_compressed_file}'", db
+  def copy_and_compress_to_file(to_compressed_file, db, query)
+    psql "\\copy (#{query}) TO PROGRAM 'gzip > #{to_compressed_file}' WITH CSV", db
   end
 
-  def copy_from_file(from_compressed_file, db, table)
-    psql "\\COPY #{table} FROM PROGRAM 'gunzip --to-stdout #{from_compressed_file}'", db
+  def copy_from_compressed_file(from_compressed_file, db, table)
+    psql "\\copy #{table} FROM PROGRAM 'gunzip --to-stdout #{from_compressed_file}' WITH CSV", db
   end
 
   private

@@ -52,7 +52,7 @@ module Capistrano::DBSync
 
     def dump_partial_selected_data(db, file_namer, data_selection)
       data_selection.map do |table, query|
-        cli.copy_to_file(file_namer.next(table, :table), db, query) if query
+        cli.copy_and_compress_to_file(file_namer.next(table, :table), db, query) if query
       end.compact
     end
 

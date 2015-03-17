@@ -70,7 +70,7 @@ module Capistrano::DBSync
       files = Dir.glob(File.join(working_dir, "*.table"))
       files.map do |file|
         table_name = Postgres::FileNameGenerator.extract_name(file)
-        cli.copy_from_file(file, to_db, table_name)
+        cli.copy_from_compressed_file(file, to_db, table_name)
       end
     end
 
