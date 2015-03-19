@@ -41,6 +41,7 @@ module Capistrano::DBSync
 
     def load_options
       user_options = cap.fetch(:db_sync_options)
+      user_options = user_options.reject { |_, v| v.nil? }
       DEFAULT_OPTIONS.call(cap).deep_merge(user_options)
     end
 
