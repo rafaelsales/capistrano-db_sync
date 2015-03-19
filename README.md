@@ -82,6 +82,12 @@ The following steps describe what happens when executing `cap production db_sync
 
 * Rafael Sales [@rafaelsales](http://github.com/rafaelsales) - help me not stay forever alone here :)
 
+### Plans
+
+* Increase test coverage
+* Add support to MySQL
+* Validate database versions before applying any changes
+
 ### Contributing
 
 1. Fork it ( https://github.com/rafaelsales/capistrano-db_sync/fork )
