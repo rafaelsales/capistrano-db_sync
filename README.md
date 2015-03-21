@@ -1,6 +1,4 @@
-[![Build Status](https://snap-ci.com/heartbits/capistrano-db_sync/branch/master/build_image)](https://snap-ci.com/heartbits/capistrano-db_sync/branch/master)
-
-## Capistrano::DBSync
+### Capistrano::DBSync [![Build Status](https://snap-ci.com/heartbits/capistrano-db_sync/branch/master/build_image)](https://snap-ci.com/heartbits/capistrano-db_sync/branch/master) [![Code Climate](https://codeclimate.com/github/heartbits/capistrano-db_sync/badges/gpa.svg)](https://codeclimate.com/github/heartbits/capistrano-db_sync)
 
 Fast and sophisticated remote database import using the best of **Postgres 9.2.x**
 
