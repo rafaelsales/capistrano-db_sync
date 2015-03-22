@@ -4,11 +4,13 @@ class Capistrano::DBSync::Postgres::CLI
   end
 
   def dump(to_file, db, options = [])
-    "#{with_pw} pg_dump #{credentials} #{format_args} -f #{to_file} #{options.join(' ')} #{db}"
+    args = to_string_args(options)
+    "#{with_pw} pg_dump #{credentials} #{format_args} -f #{to_file} #{args} #{db}"
   end
 
   def restore(from_file, db, options = [])
-    "#{with_pw} pg_restore #{credentials} #{format_args} -d #{db} #{options.join(' ')} #{from_file}"
+    args = to_string_args(options)
+    "#{with_pw} pg_restore #{credentials} #{format_args} -d #{db} #{args} #{from_file}"
   end
 
   def drop_db(db)
@@ -65,6 +67,10 @@ class Capistrano::DBSync::Postgres::CLI
 
   def with_pw
     "PGPASSWORD='#{config['password']}'" unless config.fetch('password', '').empty?
+  end
+
+  def to_string_args(options)
+    options.nil? ? "" : options.join(" ")
   end
 
   attr_reader :config, :session_id
