@@ -10,7 +10,7 @@ class Capistrano::DBSync::MySQL::CLI
 
   def restore(from_file, db, options = [])
     args = to_string_args(options)
-    mysql "#{args} < #{from_file}", db
+    "mysql #{credentials} #{args} -D #{db} < #{from_file}"
   end
 
   def drop_db(db)
