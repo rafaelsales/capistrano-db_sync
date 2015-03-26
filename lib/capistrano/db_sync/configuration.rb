@@ -1,3 +1,4 @@
+require 'tmpdir'
 require 'active_support/core_ext/hash'
 
 module Capistrano::DBSync
@@ -21,14 +22,14 @@ module Capistrano::DBSync
 
           pg_jobs: 1, # Number of jobs to run in parallel on pg_restore
 
-          working_dir: "./tmp",
+          working_dir: Dir.tmpdir,
           env: ENV.fetch('RAILS_ENV', 'development'),
         },
 
         remote: {
           cleanup: true, # If the remote dump directory should be removed after downloaded
 
-          working_dir: "/tmp",
+          working_dir: cap.fetch(:tmp_dir, "/tmp"),
           env: cap.fetch(:stage).to_s,
         },
       }
