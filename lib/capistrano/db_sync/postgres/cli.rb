@@ -5,12 +5,12 @@ class Capistrano::DBSync::Postgres::CLI
 
   def dump(to_file, db, options = [])
     args = to_string_args(options)
-    "#{with_pw} pg_dump #{credentials} #{format_args} -f #{to_file} #{args} #{db}"
+    "#{with_pw} pg_dump #{credentials} #{format_args} -f #{to_file} #{args} #{db}".strip
   end
 
   def restore(from_file, db, options = [])
     args = to_string_args(options)
-    "#{with_pw} pg_restore #{credentials} #{format_args} -d #{db} #{args} #{from_file}"
+    "#{with_pw} pg_restore #{credentials} #{format_args} -d #{db} #{args} #{from_file}".strip
   end
 
   def drop_db(db)
@@ -27,7 +27,7 @@ class Capistrano::DBSync::Postgres::CLI
 
   def psql(command, db = "postgres")
     normalized_command = command.gsub('"', '\"').gsub(/\s\s+|\n/, " ")
-    %Q|#{with_pw} psql #{credentials} -d #{db} -c "#{normalized_command}"|
+    %Q|#{with_pw} psql #{credentials} -d #{db} -c "#{normalized_command}"|.strip
   end
 
   def kill_processes_for_db(db)
@@ -62,7 +62,9 @@ class Capistrano::DBSync::Postgres::CLI
   end
 
   def with_pw
-    "PGPASSWORD='#{config['password']}'" unless config.fetch('password', '').empty?
+    if config['password']
+      "PGPASSWORD='#{config['password']}'"
+    end
   end
 
   def to_string_args(options)
