@@ -25,10 +25,6 @@ class Capistrano::DBSync::Postgres::CLI
     psql %Q|ALTER DATABASE "#{old_db}" RENAME TO "#{new_db}";|
   end
 
-  def clone_db(new_db, template_db)
-    psql %Q|CREATE DATABASE "#{new_db}" WITH TEMPLATE "#{template_db}";|
-  end
-
   def psql(command, db = "postgres")
     normalized_command = command.gsub('"', '\"').gsub(/\s\s+|\n/, " ")
     %Q|#{with_pw} psql #{credentials} -d #{db} -c "#{normalized_command}"|
