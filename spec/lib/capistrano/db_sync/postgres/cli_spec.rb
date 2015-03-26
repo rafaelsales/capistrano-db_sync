@@ -27,4 +27,32 @@ describe Capistrano::DBSync::Postgres::CLI do
       command.must_equal "PGPASSWORD='pw' pg_restore -U user -h 127.0.0.1 -p 5432 --no-acl --no-owner --format=custom -d staging --jobs=3 /db/production.dump"
     end
   end
+
+  describe "#psql" do
+    it "generates a command to drop a database" do
+      command = cli.psql("fake command")
+      command.must_equal %Q{PGPASSWORD='pw' psql -U user -h 127.0.0.1 -p 5432 -d postgres -c "fake command"}
+    end
+  end
+
+  describe "#drop_db" do
+    it "generates a command to drop a database" do
+      command = cli.drop_db("staging")
+      command.must_match /psql .* -c "DROP DATABASE IF EXISTS \\"staging\\";"/
+    end
+  end
+
+  describe "#create_db" do
+    it "generates a database creation command" do
+      command = cli.create_db("staging")
+      command.must_match /psql .* -c "CREATE DATABASE \\"staging\\";"/
+    end
+  end
+
+  describe "#rename_db" do
+    it "generates a database creation command" do
+      command = cli.rename_db("staging_old", "staging_new")
+      command.must_match /psql .* -c "ALTER DATABASE \\"staging_old\\" RENAME TO \\"staging_new\\";"/
+    end
+  end
 end
