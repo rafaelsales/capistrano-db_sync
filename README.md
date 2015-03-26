@@ -88,7 +88,7 @@ The following steps describe what happens when executing `cap production db_sync
 
 ### Contributing
 
-1. Fork it ( https://github.com/rafaelsales/capistrano-db_sync/fork )
+1. Fork it ( https://github.com/heartbits/capistrano-db_sync/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
