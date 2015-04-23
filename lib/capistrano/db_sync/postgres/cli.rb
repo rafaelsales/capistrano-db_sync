@@ -55,14 +55,14 @@ class Capistrano::DBSync::Postgres::CLI
 
   def credentials
     credentials_params = []
-    credentials_params << "-U #{config['username']}" unless config.fetch('username', '').empty?
-    credentials_params << "-h #{config['host']}"     unless config.fetch('host', '').empty?
-    credentials_params << "-p #{config['port']}"     unless config.fetch('port', '').empty?
+    credentials_params << "-U #{config['username']}" if config.has_key?('username')
+    credentials_params << "-h #{config['host']}"     if config.has_key?('host')
+    credentials_params << "-p #{config['port']}"     if config.has_key?('port')
     credentials_params.join(" ")
   end
 
   def with_pw
-    if config['password']
+    if config.has_key?('password')
       "PGPASSWORD='#{config['password']}'"
     end
   end
