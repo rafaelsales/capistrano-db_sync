@@ -86,6 +86,7 @@ The following steps describe what happens when executing `cap production db_sync
 
 * Rafael Sales [@rafaelsales](https://github.com/rafaelsales)
 * Jérémy Lecour [@jlecour](https://github.com/jlecour)
+* Ankur Agarwal [@devilankur18](https://github.com/devilankur18)
 
 ### Plans
 
