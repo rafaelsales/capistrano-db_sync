@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "capistrano", ">= 3.0.0", "< 4"
-  spec.add_dependency "activesupport", ">= 3.0.0", "< 5"
+  spec.add_dependency "activesupport", ">= 3.0.0", "< 5.1"
 end
